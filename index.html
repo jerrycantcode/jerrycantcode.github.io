@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Jerry Codes</title>
+        <link rel="stylesheet" type="text/css" href="styles/styles.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Welcome to JerryCodes! I am a frontend web developer, and this is where I infrequently post everything from updates to projects. Have a look around if you like.">
+        <meta name="robots" content="index, follow">
+        <meta property="og:title" content="JerryCodes">
+        <meta property="og:description" content="frontend web dev dumping ground.">
+        <meta property="og:image" content="https://i.ibb.co/Gphfy4r/logo.png">
+        <meta property="og:url" content="https://jerrycodes.org">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.11.1/sass.sync.min.js"></script>
+        <link rel="icon" type="image/png" href="assets/icon.png">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    </head>
+    <body>
+        <div class="header">
+            <div id="snow"></div>
+              
+        </div> 
+        <header id="header">
+            <img id="logo" onclick="nav('home')" src="assets/logo.png">
+            <img id="logo2" onclick="nav('home')"  src="assets/logomin.png">
+            <nav>
+                <div id="mainNav">
+                <button onclick="nav('blog')">Blog</button><button onclick="nav('projects')">Projects</button><button onclick="nav('about')">About</button></div>
+                <div id="searchbarParent">
+                    <input id="searchInput" type="text" placeholder="Search website..."></input>
+                    <button onclick="search(document.getElementById('searchInput').value)"><?xml version="1.0" ?><svg id="searchIcon" enable-background="new 0 0 32 32" id="Glyph" version="1.1" viewBox="0 0 32 32" xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"><path d="M27.414,24.586l-5.077-5.077C23.386,17.928,24,16.035,24,14c0-5.514-4.486-10-10-10S4,8.486,4,14  s4.486,10,10,10c2.035,0,3.928-0.614,5.509-1.663l5.077,5.077c0.78,0.781,2.048,0.781,2.828,0  C28.195,26.633,28.195,25.367,27.414,24.586z M7,14c0-3.86,3.14-7,7-7s7,3.14,7,7s-3.14,7-7,7S7,17.86,7,14z" id="XMLID_223_"/></svg></button>
+                </div>
+            </nav>
+        </header>
+
+        <div id="cont">
+            <div class="container" id="aboutBody">
+                <div class="postInfo">
+                    <h1>About</h1>
+                    <p class="abtDate">Last Updated April 25th, 2024</p>
+                </div>
+
+                <div class="sideBar">
+                    <div class="sideBarArticle">
+                        <img class="sidebarimg" src="assets/pfp.png"></img>
+                        <h4>Contact</h4>
+                        <p style="color: limegreen;">jerrycantcode@gmail.com</p>
+                    </div>
+                    <div class="sideBarArticle">
+                        <h3>Programming Languages</h3>
+                        <p style="color: green;">HTML</p>
+                        <p style="color: limegreen;">CSS</p>
+                        <p style="color: yellowgreen;">Javascript</p>
+                        <p style="color: rgb(255,200,0);">Python</p>
+                        <p style="color: red;">Java</p>
+                    </div>
+                    <div class="sideBarArticle">
+                        <h3>Helpful links</h3>
+                        <div class="shelf">
+                            <button onclick="window.open('mailto:jerrycantcode@gmail.com', '_blank')"><img src="assets/icons/gmail.png"></button>
+                            <button onclick="window.open(`https://github.com/jerrycantcode`, '_blank')"><img src="assets/icons/github.png"></button>
+                            <button onclick="window.open(`https://youtube.com/@jerrycodesstuff`, '_blank')"><img src="assets/icons/youtube.png"></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="article">
+                <p>Hi. My name's Oliver, although most people just call me Jerry. I'm a 15 year old solo dev in high school, hoping to get myself out there a little bit. This blog is my attempt at doing so.</p>
+                <h3>About Me</h3>
+                <p>As you know, I'm a high school kid, so it's sometimes hard to find time to code. Coding really is just my favorite thing to do, though. I love spending time solving problems people didn't know they had, or just doing something goofy. I once made a countdown to christmas down to the nanosecond. I would love to become a software engineer at some point.</p>
+                <p>As well as programming, I enjoy a whole host of hobbies. For a while, I've done a lot with video editing and occasional content creation for some of my projects. I also am on a local robotics team which takes up a lot of my time. I've also been involved in some game development in the past.</p>
+                <p>I also enjoy mountain biking and sometimes just taking walks. While most of my hobbies take place inside, I still do enjoy the beauty of nature and just being outside in general. Where I live, each season is completely different from the last, and I'm always amazed each year.</p>
+                <h3>JerryCodes</h3>
+                <p>The reason I'm making this website is actually because of an old project, "Onedev". I made it in my 8th grade year of middle school. I called it a blog, but it really was just my website. It had so many pages of different categories of things I wanted to write about. I loved being able to seemingly communicate with the world (even if nobody actually read it). The problem was the commitment. At the end of the day, I am a kid in high school that has a bunch homework and extracirriculars. I really didn't have the time to give thought to all of the different pages on Onedev. My method of making posts was to literally type out the code and then update it with the actual website, which was a painstakingly slow process. I could sense from the beginning that any consistency in my posting that I wanted to establish wouldn't last long. My motivation to post on all of the different categories dwindled and it ultimately died in the summer, with a sendoff promising to post more.</p>
+                <p>In a way, this website is a tribute to Onedev. I loved the outreach aspect, but i couldn't take the commitment. I've had the idea for a while now to create a new website where I didn't have any such commitment.</p>
+                <p>That's why this website is the way it is. I have no obligation to post, so I only do when I want to. It's also a place where I can just put all my projects to just have them out there. This is my website, and I don't want to be held down by anything else.</p>
+                <h3>My Story</h3>
+                <p>It started in sixth grade, when 11-year-old me found a book tucked away in a cabinet of a desk in my house. It was titled, "Build Your Own Website". It taught me the very basics of what I know today, how to use HTML and CSS to make a static webpage that isn't <span class="italic">that</span> horrible to look at. This was, in it's most basic form, my start of coding.</p>
+                <p>Now, on my past websites I've liked to brag about how I'm one of the few people at my school who know how to program. While this may be true, my coding skills aren't as amazing as I may make them seem. I have a very good understanding of HTML and CSS, but ultimately those languages can really only produce static webpages. I've only just in this past year started to build up the skillset of using Javascript and APIs which I used to build this website. Every time I make a website similar to this, it's usually a pretty good representation of my skills at the time. It's actually really cool for me to visit my past websites and to just marvel at how far I've come. My former "blog" Onedev, which you'll learn a little more about if you keep reading, bragged about having flowing CSS transitions, a light and dark mode, and a pretty well navigable UI. It was basically the pinnacle of my skills back then, and I was dang well proud of it. Looking back, it wasn't much to brag about, and I'm sure i'll someday feel the same about this website as well. I decided to be a bit more humble with this website, because I know that in a year's time, this probably will be no more than a relic of the past, cemented in my endless history of abandoned, dusty old projects from the years and years I've been coding. Because at the end of the day, no one website will ever be able to encapsulate my journey.</p>
+                <p>So while I would normally write out all the events in my programming life that brought me here, words can't truly express the twists and turns of my real story. This website is my story. I hope you enjoy being a part of the story that never stops writing itself.</p>
+                <p style="text-indent: 50px; font-size: 18px; margin-bottom: 20px;">-Jerry</p>
+                <p>P.S. If you actually care, you can read about my story on <a href="https://onedev.playcode.io">Onedev</a>.</p>
+                </div>
+            </div>
+            <div class="container" id="blogBody">
+                <h1>Blog</h1>
+                <div id="BlogPosts"></div>
+            </div>
+            <div class="container" id="projectsBody">
+                <h1>Projects</h1>
+                <div id="ProjectPosts"></div>
+            </div>
+            <div class="container" id="postBody">
+            </div>
+            <div class="container" id="searchBody">
+                <h1>Search</h1>
+                <div id="SearchPosts"></div>
+            </div>
+            <div class="container" id="homeBody">
+                <div class="front">
+                    <div class="front-left">
+                        <img src="assets/cover.jpg">
+                    </div>
+                    <div class="front-right"><h3>Hi. I'm Oliver, but you can call me <span>Jerry</span>.</h3>
+                        <p>This is my website. I put a lot of effort into making this happen, so I hope you enjoy what I have on this website, and I'm excited to continue my web dev journey.</p>
+                        <p>I'm Jerry, a 15 year old frontend web dev. If you want to learn more about me, you can go to my about page. If you want to check out what I'm doing, you can look at my blog. I post all of my coding projects on the Projects page, if you want to check that out.</p>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <div id="overlay">
+            <div class="loader"></div>
+            <p>Fetching Content...</p>
+        </div>
+        <script type="text/javascript" src="scripts/script.js"></script>
+        <script type="text/javascript" src="scripts/analytics.js"></script>
+        <script type="text/javascript" src="scripts/page.js"></script>
+    </body>
+</html>
