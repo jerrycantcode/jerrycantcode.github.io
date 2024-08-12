@@ -10,6 +10,7 @@ body {
     font-optical-sizing: auto;
     font-weight: 300;
     font-style: normal;
+    overflow-x: hidden;
 }
 h1 {
     margin: 15px;
@@ -303,10 +304,11 @@ p {
 }
 .sideBar {
     width: 20vw;
-    position: absolute;
-    right: 0;
-    padding-top: 50px;
     margin-right: 10px;
+    order: 2;
+}
+.article {
+    order: 1;
 }
 .sideBarArticle {
     width: 20vw;
@@ -428,15 +430,17 @@ p {
     }
     .article {
         width: 100%;
+        order: 2;
+        background-color: red;
     }
     .sideBar {
-        width: 90vw;
         padding-left: 0;
         padding-right: 0;
-        position: unset;
-        display: inline-flex;
+        display: flex;
         padding-top: 0px;
         margin-right: 0px;
+        order: 1;
+        background-color: blue;
     }
     .sideBarArticle {
         flex: 1;
@@ -464,6 +468,9 @@ p {
     }
     .postInfo h1 {
         margin: 0;
+    }
+    .post-content {
+        flex-direction: column;
     }
   }
   @media only screen and (max-width: 523px) {
@@ -575,6 +582,9 @@ p {
     padding: 3px;
     font-weight: 200;
 }
+#SearchPosts h2 {
+    padding: 0;
+}
 .front {
     width: 100vw;
     display: flex;
@@ -659,4 +669,9 @@ p {
     margin: 0;
     padding: 0;
   } 
+  .post-content {
+    display: flex;
+    flex-direction: row;
+    gap: 50px;
+  }
   

@@ -77,6 +77,10 @@ function nav(id){
     }
     document.getElementById(`${id}Body`).classList.remove('leave');
     document.getElementById(`${id}Body`).classList.add('onload');
+
+    if((id != 'search') && (id != 'post')) {
+        sendAnalytics(id);
+    }
 }
 
 function openPost(t,type) {
@@ -100,10 +104,11 @@ function openPost(t,type) {
         <h1>`+pp.title+`</h1>
             <p class="date">Posted on `+pp.date+`</p>
         </div>
+        <div class="post-content">
         `+pp.body+`
+        </div>
     </div>
     `
-    sendAnalytics(pp, type);
 
     const parentElement = document.querySelector('#postBody');
     const childElement = parentElement.querySelector('.sideBar');
@@ -112,6 +117,7 @@ function openPost(t,type) {
         parentElement.querySelector('.article').style.width = "100%"
     }
 
+    sendAnalytics('post');
 }
 
 function countWords(html) {
@@ -157,16 +163,12 @@ function initData() {
 
         document.getElementById("BlogPosts").innerHTML = ``
         for(let i = postData.length - 1; i >= 0; i--) {
-            document.getElementById("BlogPosts").innerHTML += `
-            <div class="postPreview" onclick="openPost('${i}','blog')"><div class="previewLeft"><h1>`+JSON.parse(postData[i]).title+`</h1>
-            <p>Posted on ${JSON.parse(postData[i]).date}</p><p>${countWords(JSON.parse(postData[i]).body)} words</p></div><div class="postPreviewParagraph">${postPreview(JSON.parse(postData[i]).body)}...</div></div>`
+            document.getElementById("BlogPosts").innerHTML += generatePostPreview('blog', JSON.parse(postData[i]), i) 
         }
 
         document.getElementById("ProjectPosts").innerHTML = ``
         for(let i = projectData.length - 1; i >= 0; i--) {
-            document.getElementById("ProjectPosts").innerHTML += `
-            <div class="postPreview" onclick="openPost('${i}','projects')"><div class="previewLeft"><h1>`+JSON.parse(projectData[i]).title+`</h1>
-            <p>Posted on ${JSON.parse(projectData[i]).date}</p><p>${countWords(JSON.parse(projectData[i]).body)} words</p></div><div class="postPreviewParagraph">${postPreview(JSON.parse(projectData[i]).body)}...</div></div>`
+            document.getElementById("ProjectPosts").innerHTML += generatePostPreview('projects', JSON.parse(projectData[i]), i) 
         }
 
         load();
@@ -177,15 +179,11 @@ function initData() {
 
         document.getElementById("BlogPosts").innerHTML = ``
         for(let i = postData.length - 1; i >= 0; i--) {
-            document.getElementById("BlogPosts").innerHTML += `
-            <div class="postPreview" onclick="openPost('${i}','blog')"><h1>`+JSON.parse(postData[i]).title+`</h1>
-            <p>Posted on ${JSON.parse(postData[i]).date}</p></div>`
+            document.getElementById("BlogPosts").innerHTML += generatePostPreview('blog', postData[i], i) 
         }
         document.getElementById("ProjectPosts").innerHTML = ``
         for(let i = projectData.length - 1; i >= 0; i--) {
-            document.getElementById("ProjectPosts").innerHTML += `
-            <div class="postPreview" onclick="openPost('${i}','projects')"><h1>`+JSON.parse(projectData[i]).title+`</h1>
-            <p>Posted on ${JSON.parse(projectData[i]).date}</p></div>`
+            document.getElementById("ProjectPosts").innerHTML += generatePostPreview('projects', projectData[i], i);
         }
         
         load();
@@ -199,15 +197,13 @@ function search(input){
     for(let i = postData.length - 1; i >= 0; i--) {
         let opt = JSON.parse(postData[i])
         if(JSON.stringify(opt).toLowerCase().includes(input.toLowerCase())) {
-            output.innerHTML += `<div class="postPreview" onclick="openPost('${i}','blog')"><h1>`+opt.title+`</h1>
-            <p>Posted on `+opt.date+`</p></div>`
+            output.innerHTML += generatePostPreview('blog', opt, i) 
         }
     }
     for(let i = projectData.length-1; i >= 0; i--) {
         let opt = JSON.parse(projectData[i])
         if(JSON.stringify(opt).toLowerCase().includes(input.toLowerCase())) {
-            output.innerHTML += `<div class="postPreview" onclick="openPost('${i}','projects')"><h1>`+opt.title+`</h1>
-            <p>Posted on `+opt.date+`</p></div>`
+            output.innerHTML += generatePostPreview('projects', opt, i) 
         }
     }
     if(output.innerHTML === ``) {
@@ -222,6 +218,13 @@ function search(input){
     
     // Push the new URL to the browser history
     window.history.pushState({ path: newUrl }, '', newUrl);
+
+    sendAnalytics('search');
+}
+
+function generatePostPreview(type, data, i) {
+    return `<div class="postPreview" onclick="openPost('${i}','${type}')"><div class="previewLeft"><h1>`+data.title+`</h1>
+        <p>Posted on ${data.date}</p><p>${countWords(data.body)} words</p></div><div class="postPreviewParagraph">${postPreview(data.body)}...</div></div>`
 }
 
 function LoadVFX() {

@@ -30,12 +30,12 @@ async function getPublicIP() {
 
 getPublicIP()
 
-async function sendAnalytics(p,t) {
-    var log = await getCurrentDateTime(p, t)
+async function sendAnalytics(p) {
+    var log = await getCurrentDateTime(p)
     const formData = new FormData();
     formData.append("data", JSON.stringify(log));
 
-    fetch('https://script.google.com/macros/s/AKfycbz26nZqPM-AEs9MTBYWX0_36fkIc3OuUSU2GcT-4N2kAdB39igm1BKb-1pj-1ZR7igs/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbxAP4kL4hH0YTdpJsUC1jKGlnIKYa4RnHnG532hX2IJHK6FXIebVEuPyuwJv8veVNyD/exec', {
         method: 'POST',
         body: formData
     })
@@ -80,7 +80,7 @@ function getOS() {
     }
 }
 
-async function getCurrentDateTime(post, type) {
+async function getCurrentDateTime(page) {
 
     const now = new Date();
     const options = { month: 'long', day: 'numeric', year: 'numeric', hour: 'numeric', minute: 'numeric', hour12: true };
@@ -100,12 +100,13 @@ async function getCurrentDateTime(post, type) {
     // Combine everything into the desired format
     return {
         time: `${month} ${day}${suffix(day)}, ${now.getFullYear()} at ${time}`,
-        type: type,
-        post: post.title,
+        type: page,
+        post: window.location.hash,
         ip: ip,
         os: getOS(),
         location: `${locationn.city}, ${locationn.region} ${locationn.postal}`,
         wifi: locationn.org,
-        gmaps: `https://www.google.com/maps?q=${locationn.loc.split(',')[0]},${locationn.loc.split(',')[1]}`
+        gmaps: `https://www.google.com/maps?q=${locationn.loc.split(',')[0]},${locationn.loc.split(',')[1]}`,
+        site: window.location.href
     }
 }
