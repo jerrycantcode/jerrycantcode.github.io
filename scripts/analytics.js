@@ -35,7 +35,7 @@ async function sendAnalytics(p) {
     const formData = new FormData();
     formData.append("data", JSON.stringify(log));
 
-    fetch('https://script.google.com/macros/s/AKfycbxAP4kL4hH0YTdpJsUC1jKGlnIKYa4RnHnG532hX2IJHK6FXIebVEuPyuwJv8veVNyD/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbyjf6pKC8fpgh_8Ee081286tvSxpSQve2rKgUv4x5GeTTwFuIZQkOSz0eMg6lxE2JU/exec', {
         method: 'POST',
         body: formData
     })
@@ -49,6 +49,22 @@ async function sendAnalytics(p) {
         console.log('Error:', error);
     });
 }
+
+function getLocalTimeZone() {
+    const date = new Date();
+    const timeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+
+    // Get the time zone abbreviation using toLocaleString
+    const options = { timeZone, timeZoneName: 'short' };
+    const timeZoneInfo = date.toLocaleString('en-US', options);
+
+    // The abbreviation is usually at the end of the returned string
+    const abbreviation = timeZoneInfo.split(' ').pop();
+
+    return `${timeZone} (${abbreviation})`;
+}
+
+
 
 function getOS() {
     const userAgent = navigator.userAgent;
@@ -80,6 +96,43 @@ function getOS() {
     }
 }
 
+function getDetroitDateTime() {
+    // Create a date object for the current time
+    const now = new Date();
+
+    // Convert the current time to Detroit time (Eastern Time)
+    const options = { 
+        timeZone: 'America/New_York', 
+        month: 'long', 
+        day: 'numeric', 
+        year: 'numeric', 
+        hour: 'numeric', 
+        minute: 'numeric', 
+        hour12: true 
+    };
+    
+    // Get the formatted date
+    const detroitDate = new Intl.DateTimeFormat('en-US', options).format(now);
+    
+    // Split the date and time
+    const [monthDay, year, time] = detroitDate.split(', ');
+    const [month, dayWithSuffix] = monthDay.split(' ');
+
+    // Determine the ordinal suffix for the day
+    const day = parseInt(dayWithSuffix, 10);
+    const suffix = (day) => {
+        if (day > 3 && day < 21) return 'th'; // Catch 11th-13th
+        return ['st', 'nd', 'rd'][day % 10 - 1] || 'th';
+    };
+
+    // Combine everything into the desired format
+    return `${month} ${day}${suffix(day)}, ${year}`;
+}
+
+function getLocalLanguage() {
+    return navigator.language || navigator.userLanguage; // For older versions of IE
+}
+
 async function getCurrentDateTime(page) {
 
     const now = new Date();
@@ -99,14 +152,17 @@ async function getCurrentDateTime(page) {
     const time = now.toLocaleString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true }).toLowerCase();
     // Combine everything into the desired format
     return {
-        time: `${month} ${day}${suffix(day)}, ${now.getFullYear()} at ${time}`,
-        type: page,
-        post: window.location.hash,
+        site: window.location.href,
+        localTime: `${month} ${day}${suffix(day)}, ${now.getFullYear()} at ${time}`,
+        hqTime: getDetroitDateTime(),
+        page: page,
+        hash: window.location.hash,
         ip: ip,
         os: getOS(),
         location: `${locationn.city}, ${locationn.region} ${locationn.postal}`,
+        timeZone: getLocalTimeZone(),
+        lang: getLocalLanguage(),
         wifi: locationn.org,
-        gmaps: `https://www.google.com/maps?q=${locationn.loc.split(',')[0]},${locationn.loc.split(',')[1]}`,
-        site: window.location.href
+        gmaps: `https://www.google.com/maps?q=${locationn.loc.split(',')[0]},${locationn.loc.split(',')[1]}`
     }
 }

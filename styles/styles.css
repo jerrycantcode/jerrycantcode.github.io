@@ -396,139 +396,6 @@ p {
     top: 70px;
     height: calc(100vh - 70px);
   }
-  @media only screen and (max-width: 800px) {
-    #header {
-        height: 100px;
-    }
-    #header.minimized {
-        height: 95px;
-    }
-    #cont {
-        top: 100px;
-        height: calc(100vh - 100px);
-    }
-    #cont.minimized {
-        top: 95px;
-        height: calc(100vh - 95px);
-    }
-    nav {
-        display: flex;
-        flex-direction: column;
-    }
-    #searchbarParent {
-        margin-top: 15px;
-    }
-    #searchbarParent.minimized {
-        margin-top: 5px;
-    }
-    #aboutBody, #postBody {
-        max-width: 90vw !important;
-        margin-left: 5vw;
-    }
-    #postBody {
-        max-width: 90vw !important;
-    }
-    .article {
-        width: 100%;
-        order: 2;
-        background-color: red;
-    }
-    .sideBar {
-        padding-left: 0;
-        padding-right: 0;
-        display: flex;
-        padding-top: 0px;
-        margin-right: 0px;
-        order: 1;
-        background-color: blue;
-    }
-    .sideBarArticle {
-        flex: 1;
-        height: 50vh;
-        margin: 5px;
-    }
-    .sideBar img {
-        width: 80%;
-    }
-    .postInfo {
-        height: 90px;
-        width: 90vw;
-        text-align: center;
-        display: inline-block;
-    }
-    .postInfo p {
-        left: 0;
-        margin-right: 0;
-        display: block;
-        width: 90vw;
-        text-align: center;
-        margin-top: 0px;
-        text-indent: 0;
-        margin: 0;
-    }
-    .postInfo h1 {
-        margin: 0;
-    }
-    .post-content {
-        flex-direction: column;
-    }
-  }
-  @media only screen and (max-width: 523px) {
-    #header {
-        text-align: center;
-        display: inline;
-        height: 190px;
-    }
-    #cont {
-        top: 190px;
-        height: calc(100vh - 190px);
-    }
-    #cont.minimized {
-        top: 60px;
-        height: calc(100vh - 60px);
-    }
-    #header.minimized {
-        height: 60px;
-        overflow-y: hidden;
-    }
-    #logo {
-        margin-left: 0;
-        margin-top: 5px;
-    }
-    #logo2 {
-        height: 60px;
-        left: 50vw;
-        transform: translate(-50%);
-    }
-    nav {
-        left: 2vw;        
-        flex-direction: column;
-    }
-    .sideBar {
-        flex-direction: column;
-        height: auto;
-    }
-    .sideBar img {
-        max-height: 150px;
-    }
-    .sideBarArticle {
-        flex: 1;
-        width: 90vw;
-        margin: 0;
-        margin-top: 5px;
-    }
-    .postPreview {
-        align-items: unset;
-    }
-  }
-  @media only screen and (max-width: 285px) {
-    #mainNav button {
-        padding: 5px 10px 5px 10px; 
-    }
-    #searchInput {
-        min-width: 150px;
-    }
-  }
 
   @keyframes colorRotate {
     0% {
@@ -674,4 +541,185 @@ p {
     flex-direction: row;
     gap: 50px;
   }
-  
+  @media only screen and (max-width: 800px) {
+    #header {
+        height: 100px;
+    }
+    #header.minimized {
+        height: 95px;
+    }
+    #cont {
+        top: 100px;
+        height: calc(100vh - 100px);
+    }
+    #cont.minimized {
+        top: 95px;
+        height: calc(100vh - 95px);
+    }
+    nav {
+        display: flex;
+        flex-direction: column;
+    }
+    #searchbarParent {
+        margin-top: 15px;
+    }
+    #searchbarParent.minimized {
+        margin-top: 5px;
+    }
+    #aboutBody, #postBody {
+        max-width: 90vw !important;
+        margin-left: 5vw;
+    }
+    #postBody {
+        max-width: 90vw !important;
+    }
+    .article {
+        width: 100%;
+        order: 2;
+    }
+    .sideBar {
+        padding-left: 0;
+        padding-right: 0;
+        width: 90vw;
+        display: flex;
+        padding-top: 0px;
+        margin-right: 0px;
+        order: 1;
+    }
+    .sideBarArticle {
+        flex: 1;
+        margin: 5px;
+    }
+    .sideBar img {
+        width: 80%;
+    }
+    .postInfo {
+        height: 90px;
+        width: 90vw;
+        text-align: center;
+        display: inline-block;
+    }
+    .postInfo p {
+        left: 0;
+        margin-right: 0;
+        display: block;
+        width: 90vw;
+        text-align: center;
+        margin-top: 0px;
+        text-indent: 0;
+        margin: 0;
+    }
+    .postInfo h1 {
+        margin: 0;
+    }
+    .post-content {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .front {
+        height: 100%;
+    }
+    .front-right {
+        width: 60%;
+    }
+    .front-left img {
+        height: 95%;
+        border-radius: 20px;
+    }
+  }
+  @media only screen and (max-width: 523px) {
+    #header {
+        text-align: center;
+        display: inline;
+        height: 190px;
+    }
+    #cont {
+        top: 190px;
+        height: calc(100vh - 190px);
+    }
+    #cont.minimized {
+        top: 60px;
+        height: calc(100vh - 60px);
+    }
+    #header.minimized {
+        height: 60px;
+        overflow-y: hidden;
+    }
+    #logo {
+        margin-left: 0;
+        margin-top: 5px;
+    }
+    #logo2 {
+        height: 60px;
+        left: 50vw;
+        transform: translate(-50%);
+    }
+    nav {
+        left: 2vw;        
+        flex-direction: column;
+    }
+    .sideBar {
+        flex-direction: column;
+        height: auto;
+    }
+    .sideBar img {
+        max-height: 150px;
+    }
+    .sideBarArticle {
+        flex: 1;
+        width: 90vw;
+        margin: 0;
+        margin-top: 5px;
+    }
+    .postPreview {
+        align-items: unset;
+    }
+    .front-right p {
+        margin-bottom: 10px;
+      }
+      .front-right h3 {
+        margin-bottom: 20px;
+      }
+      .front-right {
+        flex: 1;
+      }
+      #homeBody {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+      }
+      .front-left img {
+        height: 200px;
+      }
+      .previewLeft {
+        width: 100%;
+        padding-bottom: 130px;
+      }
+      .postPreviewParagraph {
+        bottom: 15px;
+      }
+  }
+  @media only screen and (max-width: 285px) {
+    #mainNav button {
+        padding: 5px 10px 5px 10px; 
+    }
+    #searchInput {
+        min-width: 150px;
+    }
+    .front-left {
+        padding-right: 5px;
+        padding-left: 5px;
+    }
+    .front-right {
+        width: 100vw;
+        padding-right: 5px;
+        padding-left: 5px;
+        box-sizing:border-box;
+    }
+    .front {
+        width: 100vw;
+        flex-direction: column;
+    }
+  }
