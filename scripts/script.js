@@ -60,6 +60,10 @@ function updateNavbarSize() {
 
 window.addEventListener('scroll', updateNavbarSize);
 
+window.addEventListener('scroll', function() {
+    document.getElementById("bg").style.scale = 1 + (window.scrollY / 2000)
+})
+
 updateNavbarSize();
 
 function nav(id){
@@ -154,12 +158,12 @@ function postPreview(html) {
 
 
 function initData() {
-
-    fetch('https://script.google.com/macros/s/AKfycbwuhE9ocPBrDPqiQ-eBUug3F1GUWxStrr7hawxaV3FBYIvwi7AmeMVnNvvVZELQzfZr/exec')
+    fetch('https://script.google.com/macros/s/AKfycbwgAhOcLoOm7JnWpUutKZgqdied2S96IE4bbbI2HsXLUFOypi5S36lQ9V_l5rMwYBqh/exec')
     .then(res => res.json())
     .then(data => {
         postData = data.columnA;
         projectData = data.columnB;
+        bgData = data.columnC;
 
         document.getElementById("BlogPosts").innerHTML = ``
         for(let i = postData.length - 1; i >= 0; i--) {
@@ -171,6 +175,7 @@ function initData() {
             document.getElementById("ProjectPosts").innerHTML += generatePostPreview('projects', JSON.parse(projectData[i]), i) 
         }
 
+        BGINIT();
         load();
     })
     .catch(error => {
@@ -189,6 +194,33 @@ function initData() {
         load();
 
     })
+}
+
+function BGINIT() {
+    let rand1 = Math.floor(Math.random() * bgData.length);
+    let rand2 = Math.floor(Math.random() * bgData.length);
+    while(rand2 === rand1) {
+        rand2 = Math.floor(Math.random() * bgData.length);
+    }
+
+    document.getElementById('bgimg1').src = bgData[rand1]
+    document.getElementById('bgimg2').src = bgData[rand2]
+    setInterval(changeBG, 10000);
+}
+
+function changeBG() {
+    let rand = Math.floor(Math.random() * bgData.length);
+    while(rand === document.getElementById('bgimg2').src) {
+        rand = Math.floor(Math.random() * bgData.length);
+    } 
+    document.getElementById('bgimg1').style.transition = '1s'
+    document.getElementById('bgimg1').style.opacity = '0'
+    setTimeout(function(){
+        document.getElementById('bgimg1').src = document.getElementById('bgimg2').src;
+        document.getElementById('bgimg2').src = bgData[Math.floor(Math.random() * bgData.length)]
+        document.getElementById('bgimg1').style.transition = '0s'
+        document.getElementById('bgimg1').style.opacity = '1'
+    }, 500)
 }
 
 function search(input){
@@ -225,75 +257,6 @@ function search(input){
 function generatePostPreview(type, data, i) {
     return `<div class="postPreview" onclick="openPost('${i}','${type}')"><div class="previewLeft"><h1>`+data.title+`</h1>
         <p>Posted on ${data.date}</p><p>${countWords(data.body)} words</p></div><div class="postPreviewParagraph">${postPreview(data.body)}...</div></div>`
-}
-
-function LoadVFX() {
-    const scss_to_compile = `
-    #snow {
-        position: fixed;
-        bottom: 0;
-        overflow: hidden;
-        height: 100vh;
-        width: 99vw;
-    }
-
-    @function random_range($min, $max) {
-        $rand: random();
-        $random_range: $min + floor($rand * (($max - $min) + 1));
-        @return $random_range;
-      }
-      
-      .snow {
-        $total: 1000;
-        position: absolute;
-        width: 10px;
-        height: 10px;
-        background: white;
-        border-radius: 50%;
-      
-        @for $i from 1 through $total {
-          $random-x: random_range(0, 100vw);
-          $random-offset: random_range(-10, 10);
-          $random-x-end: $random-x + $random-offset;
-          $random-x-end-yoyo: $random-x + ($random-offset / 2);
-          $random-yoyo-time: random_range(30, 80) / 95;
-          $random-yoyo-y: $random-yoyo-time * 100vh;
-          $random-scale: random(10000) * 0.0001;
-          $fall-duration: random_range(10, 30) * 1s;
-          $fall-delay: random(30) * -1s;
-      
-          &:nth-child(#{$i}) {
-            opacity: random(10000) * 0.0001;
-            transform: translate($random-x, -10px) scale($random-scale);
-            animation: fall-#{$i} $fall-duration $fall-delay linear infinite;
-          }
-      
-          @keyframes fall-#{$i} {
-            #{percentage($random-yoyo-time)} {
-              transform: translate($random-x-end, $random-yoyo-y) scale($random-scale);
-            }
-      
-            to {
-              transform: translate($random-x-end-yoyo, 100vh) scale($random-scale);
-            }
-          }
-        }
-      }
-      
-      
-    `;
-
-Sass.compile(scss_to_compile, (result) => {
-    var s = document.createElement("style");
-    s.innerHTML = result.text;
-    document.body.append(s);
-});
-
-
-   for (let i = 0; i < 200; i++) {
-        document.getElementById("snow").innerHTML += `<div class="snow"></div>`
-   }
-
 }
 
 function getURLParameters() {
@@ -348,14 +311,15 @@ function load() {
     } else {
         nav('home');
     }
-    document.getElementById("overlay").style.display = `none`
 
-    LoadVFX()
+    setTimeout(function(){
+        window.dispatchEvent(new Event('resize'));
+    },100);
+
+    document.getElementById("overlay").style.display = `none`
 };
 
-window.onload = function(){
-    initData();
-}
+initData();
 
 document.getElementById("overlay").style.display = `flex`
 document.getElementById("BlogPosts").innerHTML = `<h2>Loading Posts...</h2>`

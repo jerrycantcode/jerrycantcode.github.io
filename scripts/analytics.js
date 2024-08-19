@@ -18,7 +18,6 @@ async function getPublicIP() {
     try {
       const response = await fetch('https://api.ipify.org?format=json');
       const data = await response.json();
-      console.log("IP address: " + data.ip)
       ip = data.ip
       getGeoLocation(ip);
     } catch (error) {
@@ -35,7 +34,7 @@ async function sendAnalytics(p) {
     const formData = new FormData();
     formData.append("data", JSON.stringify(log));
 
-    fetch('https://script.google.com/macros/s/AKfycbyjf6pKC8fpgh_8Ee081286tvSxpSQve2rKgUv4x5GeTTwFuIZQkOSz0eMg6lxE2JU/exec', {
+    fetch('https://script.google.com/macros/s/AKfycbw4iHog2R5oQndN1qBpjBmXguzunABFGeMoZkFM89FaTABWNX6Gq1J7YktZ6QmXLZpr/exec', {
         method: 'POST',
         body: formData
     })

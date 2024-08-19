@@ -3,6 +3,7 @@
     <head>
         <title>Jerry Codes Stuff</title>
         <link rel="stylesheet" type="text/css" href="styles/styles.css">
+        <link rel="stylesheet" type="text/css" href="styles/snow.css">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="Welcome to JerryCodes! I am a frontend web developer, and this is where I infrequently post everything from updates to projects. Have a look around if you like.">
         <meta name="robots" content="index, follow">
@@ -13,6 +14,8 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/sass.js/0.11.1/sass.sync.min.js"></script>
         <link rel="icon" type="image/png" href="assets/icon.png">
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+        <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     </head>
     <body>
         <div class="header">
@@ -98,6 +101,7 @@
                 <div id="SearchPosts"></div>
             </div>
             <div class="container" id="homeBody">
+                <div class="home-front">
                 <div class="front">
                     <div class="front-left">
                         <img src="assets/cover.jpg">
@@ -107,6 +111,13 @@
                         <p>I'm Jerry, a 15 year old frontend web dev. If you want to learn more about me, you can go to my about page. If you want to check out what I'm doing, you can look at my blog. I post all of my coding projects on the Projects page, if you want to check that out.</p>
                     </div>
                 </div>
+                </div>
+                <div class="divider"></div>
+                <div class="userMap">
+                    <h1>The world watches Jerry Code!</h1>
+                    <p>Enjoy this map of global users.</p>
+                    <div id="map"></div>
+                </div>
             </div>
 
         </div>
@@ -114,8 +125,12 @@
             <div class="loader"></div>
             <p>Fetching Content...</p>
         </div>
+        <div id="bg">
+            <img id="bgimg1" src="">
+            <img id="bgimg2" src="">
+        </div>
         <script type="text/javascript" src="scripts/script.js"></script>
         <script type="text/javascript" src="scripts/analytics.js"></script>
-        <script type="text/javascript" src="scripts/page.js"></script>
+        <script type="text/javascript" src="scripts/map.js"></script>
     </body>
 </html>
